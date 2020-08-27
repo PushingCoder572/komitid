@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Komtid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+  <div class="main">
+    <div id="login_form_box">
+      <form id="login_form" action="/" method="post">
+        <input type="text" id="uname" name="uname" placeholder="Username">
+        <input type="text" id="pword" name="pword" placeholder="Password">
+        <input type="submit" value="Login">
+        <input type="button" onclick="swap_form()" value="Sign-Up">
+      </form>
+
+      <form style="display: none;" id="signup_form" action="/" method="post">
+        <input type="text" id="new_uname" name="new_uname" placeholder="Username">
+        <input type="text" id="new_password" name="new_password" placeholder="Password">
+        <input type="text" id="repeat_password" name="repeat_password" placeholder="Repeat Passward">
+      </form>
+    </div>
+  </div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
