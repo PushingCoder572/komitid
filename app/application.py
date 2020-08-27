@@ -6,14 +6,30 @@ Project: komitid
 """
 
 from flask import request, render_template, Flask, url_for
+from app.models import create_user
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def home():
-    print(url_for('static', filename="css/style.css"))
-    print(url_for('static', filename="js/script.js"))
+def sign_up():
+    if request.method == 'POST':
+        uname = request.form.get('new_uname')
+        pword = request.form.get('new_pword')
+        pword_confrimation = request.form.get('repeat_pword')
+        if pword == pword_confrimation:
+            create_user(uname, pword)
+
+    return render_template('sites/signup.html')
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        uname = request.form.get('uname')
+        pword = request.form.get('pword')
+
+
+
     return render_template('index.html')
 
 

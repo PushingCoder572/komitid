@@ -26,6 +26,7 @@ def create_user(uname, pword):
     connection.close()
 
 
+
 def get_posts():
     connection = sql.connect(path.join(ROOT, 'database.db'))
     cursor = connection.cursor()
