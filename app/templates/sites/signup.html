@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+    <title>Komitid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
 <body>
-
+  <div class="main">
+    <div id="login_form_box">
+      <form id="login_form" action="/" method="post">
+        <input type="text" id="new_uname" name="new_uname" placeholder="Username">
+        <input type="text" id="new_pword" name="new_pword" placeholder="Password">
+          <input type="text" id="re_pword" name="re_pword" placeholder="Repeat Password">
+        <input type="submit" class="in_button" value="Signup">
+        <a id="signup_link" class="in_links" href="/">Already have an account? Login</a>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

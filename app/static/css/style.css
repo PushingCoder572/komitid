@@ -3,7 +3,8 @@ body {
 }
 
 html, body {
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 .main {
   display: grid;
@@ -13,7 +14,34 @@ html, body {
 }
 
 #login_form_box {
+  padding: 2rem;
+  background-color: hsl(23deg 99% 75%);
+  border-radius: 2rem;
+}
+
+#login_form {
   display: grid;
-  place-items: center;
-  width: 10%
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+}
+
+#login_form input {
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    height: 2rem;
+    padding: 0.5rem;
+}
+
+.in_button {
+    background-color: hsl(120deg 99% 75%);
+}
+
+.in_links {
+    text-decoration: none;
+    color: grey;
+}
+
+.in_links:hover {
+    text-decoration: underline;
+    color: hotpink;
 }

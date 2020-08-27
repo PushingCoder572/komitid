@@ -11,7 +11,7 @@ from app.models import create_user
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         uname = request.form.get('new_uname')
