@@ -24,13 +24,13 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="802f83b2-ef97-4a0f-ab79-3fc664e21603">
-        <schema name="main" object-types="table, view" />
+      <connection connection-id="2b3ebc3c-9fa7-45bf-acf5-fb1714264428">
+        <schema name="main" object-types="constraint, table, index, column, dataset trigger, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="802f83b2-ef97-4a0f-ab79-3fc664e21603">
+    <connection id="2b3ebc3c-9fa7-45bf-acf5-fb1714264428">
       <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[select * from users;]]></console>
     </connection>
   </component>
@@ -38,10 +38,13 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="802f83b2-ef97-4a0f-ab79-3fc664e21603" />
+    <connection id="2b3ebc3c-9fa7-45bf-acf5-fb1714264428" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/app/schema.sql" connection-id="802f83b2-ef97-4a0f-ab79-3fc664e21603" session-id="MAIN" current-schema="main" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -63,7 +66,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="802f83b2-ef97-4a0f-ab79-3fc664e21603" active="true">
+      <connection id="2b3ebc3c-9fa7-45bf-acf5-fb1714264428" active="true">
         <database>
           <name value="Connection" />
           <description value="" />

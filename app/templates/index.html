@@ -9,10 +9,11 @@
     <div class="main">
       <img src="{{ url_for('static', filename='images/dnon.svg') }}">
 
-      <form action="/" method="post">
+      <form method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="text" name="password" placeholder="Password">
         <input class="button" type="submit" name="login" value="Login">
+        <p>{{failed}}</p>
         <a href="/signup">Create a new account</a>
       </form>
     </div>
