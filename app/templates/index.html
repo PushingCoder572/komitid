@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Komtid</title>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Komitid</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
-</head>
-<body>
-  <div class="main">
-    <div id="login_form_box">
-      <form id="login_form" action="/" method="post">
-        <input type="text" id="uname" name="uname" placeholder="Username">
-        <input type="text" id="pword" name="pword" placeholder="Password">
-        <input type="submit" class="in_button" value="Login">
-        <a id="signin_link" class="in_links" href="/signup">Create a new account!</a>
+  </head>
+  <body>
+    <div class="main">
+      <img src="{{ url_for('static', filename='images/dnon.svg') }}">
+
+      <form action="/" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="password" placeholder="Password">
+        <input class="button" type="submit" name="login" value="Login">
+        <a href="/signup">Create a new account</a>
       </form>
     </div>
-  </div>
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
 </html>

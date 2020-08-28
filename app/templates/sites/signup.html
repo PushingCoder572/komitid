@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <title>Komitid</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
-</head>
-<body>
-  <div class="main">
-    <div id="login_form_box">
-      <form id="login_form" action="/" method="post">
-        <input type="text" id="new_uname" name="new_uname" placeholder="Username">
-        <input type="text" id="new_pword" name="new_pword" placeholder="Password">
-          <input type="text" id="re_pword" name="re_pword" placeholder="Repeat Password">
-        <input type="submit" class="in_button" value="Signup">
-        <a id="signup_link" class="in_links" href="/">Already have an account? Log-in</a>
+  </head>
+  <body>
+    <div class="main">
+      <img src="{{ url_for('static', filename='images/dnon.svg') }}">
+
+      <form action="/" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="password" placeholder="Password">
+        <input type="text" name="re_password" placeholder="Repeat password">
+        <input class="button" type="submit" name="signup" value="Signup">
+        <a href="/">Already have an account? Sign-in</a>
       </form>
     </div>
-  </div>
-</body>
+  </body>
 </html>
