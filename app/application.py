@@ -5,49 +5,42 @@ Project: komitid
 @author: ollejernstrom
 """
 
-from flask import request, render_template, Flask, url_for, redirect
-from app.models import create_user, checkuser
+# Libraries and frameworks
+from flask import Flask, render_template, redirect
+from flask_sqlalchemy import SQLAlchemy
 
 
+# Setup
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
 
 
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    return render_template('sites/home.html')
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<User {self.username}>'
 
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def sign_up():
-    if request.method == 'POST':
-        uname = request.form.get('username')
-        pword = request.form.get('password')
-        pword_confrimation = request.form.get('re_password')
-        if uname and pword and pword_confrimation:
-            if pword == pword_confrimation:
-                create_user(uname, pword)
-                print('Created user', uname, pword)
-                return render_template('sites/signup.html', status='User Created!')
-
-            return render_template('sites/signup.html', status='Wrong inputs')
-
+@app.route('/signup')
+def signup():
     return render_template('sites/signup.html')
 
-@app.route('/', methods=['GET', 'POST'])
+
+
+@app.route('/login')
+def login():
+    print(User.query.all())
+    return render_template('sites/login.html')
+
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        uname = request.form.get('username')
-        pword = request.form.get('password')
-        if uname and pword:
-            if checkuser(uname, pword):
-                return redirect('/home')
-        return render_template('index.html', failed='The username does not match the password!')
+    return redirect('/login')
 
-
-
-
-    return render_template('index.html')
 
 
 if __name__ == '__main__':

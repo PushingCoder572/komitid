@@ -8,14 +8,11 @@
   <body>
     <div class="main">
       <img src="{{ url_for('static', filename='images/dnon.svg') }}">
+      {% block content %}
 
-      <form method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="text" name="password" placeholder="Password">
-        <input class="button" type="submit" name="login" value="Login">
-        <p>{{failed}}</p>
-        <a href="/signup">Create a new account</a>
-      </form>
+      {% endblock %}
+
+
     </div>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
