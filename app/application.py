@@ -42,12 +42,12 @@ def index():
         if uname and pword:
             if checkuser(uname, pword):
                 return redirect('/home')
-        return render_template('index.html', failed='The username does not match the password!')
+        return render_template('layout.html', failed='The username does not match the password!')
 
 
 
 
-    return render_template('index.html')
+    return render_template('layout.html')
 
 
 if __name__ == '__main__':
