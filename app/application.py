@@ -31,6 +31,17 @@ def signup():
     return render_template('sites/signup.html')
 
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        uname = request.form.get('username')
+        pword = request.form.get('password')
+        if uname and pword:
+            if checkuser(uname, pword):
+                return redirect('/home')
+        return render_template('layout.html', failed='The username does not match the password!')
+
+
 
 @app.route('/login')
 def login():
@@ -40,6 +51,7 @@ def login():
 @app.route('/')
 def index():
     return redirect('/login')
+
 
 
 
