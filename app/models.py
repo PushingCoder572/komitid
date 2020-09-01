@@ -14,7 +14,7 @@ Project: social
 """
 import sqlite3 as sql
 from os import path
-from app.errors import ServerError
+
 
 ROOT = path.dirname(path.realpath(__file__))
 
@@ -53,4 +53,3 @@ def checkuser(try_uname, try_pword):
 
         return False
 
-    raise ServerError
