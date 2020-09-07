@@ -6,6 +6,6 @@
         <input type="text" name="re_password" placeholder="Repeat password">
         <input class="button" type="submit" name="signup" value="Signup">
         <p>{{ status }}</p>
-        <a href="/">Already have an account? Sign-in</a>
+        <a href="{{url_for('login}}">Already have an account? Sign-in</a>
       </form>
 {%endblock%}

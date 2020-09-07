@@ -6,9 +6,9 @@ Project: komitid
 """
 
 # Libraries and frameworks
-from flask import Flask, g, render_template, redirect, request, url_for, session
+from flask import abort, Flask, flash, g, render_template, redirect, request, url_for, session
 
-from app.models import checkuser,get_data, get_session_user, db_query, create_user
+from app.models import checkuser, get_data, get_session_user, db_query, create_user
 
 # Setup
 app = Flask(__name__)
@@ -24,7 +24,8 @@ def before_request():
 
 @app.route('/home')
 def home():
-    print(g.user.id)
+    if not hasattr(g, 'user'):
+        return redirect(url_for('login'))
     return render_template('sites/home.html')
 
 
@@ -47,8 +48,9 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    session.pop('user_id', None)
     if request.method == 'POST':
-        session.pop('user_id', None)  # Removes existing user
+        # Removes existing user
 
         # Gets form data
         uname = request.form.get('username')
@@ -60,15 +62,17 @@ def login():
             session['user_id'] = userid
             return redirect(url_for('home'))
 
-        # flash an Error msg
-        return redirect(url_for('login'))
-
     return render_template('sites/login.html')
 
 
 @app.route('/')
 def index():
     return redirect('/login')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
 
 
 if __name__ == '__main__':

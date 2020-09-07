@@ -1,6 +1,6 @@
 """
 Created on 2020-08-27
-
+                                          71559263e234458bbc45887f651c6e2
 Purpose: Interacts with the database
 Project: komitid
 @author: ollejernstrom
@@ -19,10 +19,8 @@ class User(UserMixin):
         self.password = password
         self.username = username
 
-
-"""
     def __repr__(self):
-        return f'User#{self.id} {self.username}'"""
+        return f'User#{self.id} {self.username}'
 
 
 def get_session_user(user_id):
