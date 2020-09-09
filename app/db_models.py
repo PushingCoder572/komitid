@@ -14,10 +14,13 @@ ROOT = path.dirname(path.realpath(__file__))
 
 
 class User(UserMixin):
-    def __init__(self, id, username, password):
-        self.id = id
-        self.password = password
-        self.username = username
+    def __init__(self, data):
+        if data:
+            self.id = data[0]
+            self.username = data[1]
+            self.password = data[2]
+
+            self.data = data[2:]
 
     def __repr__(self):
         return f'User#{self.id} {self.username}'
@@ -25,16 +28,17 @@ class User(UserMixin):
 
 def get_session_user(user_id):
     userdata = get_user_by_id(user_id)
-    userobj = User(*userdata)
+    userobj = User(userdata)
     return userobj
 
 
 def create_user(uname, pword):
     connection = sql.connect(path.join(ROOT, 'database.db'))
     cursor = connection.cursor()
-    cursor.execute('insert into users (name, password) values(?, ?)', (uname, pword))
+    cursor.execute('insert into users (Username, Password) values(?, ?)', (uname, pword))
     connection.commit()
     connection.close()
+
 
 def db_query(key):
     connection = sql.connect(path.join(ROOT, 'database.db'))
@@ -42,6 +46,7 @@ def db_query(key):
     cursor.execute(f'SELECT {key} from users')
     data = cursor.fetchall()
     return data
+
 
 def get_data():
     connection = sql.connect(path.join(ROOT, 'database.db'))

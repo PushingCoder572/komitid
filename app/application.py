@@ -8,8 +8,8 @@ Project: komitid
 # Libraries and frameworks
 from flask import abort, Flask, flash, g, render_template, redirect, request, url_for, session
 
-from app.models import checkuser, get_data, get_session_user, db_query, create_user
-from app.api_models import Trip, sl_trip
+from app.db_models import checkuser, get_data, get_session_user, db_query, create_user
+from app.api_models import Trip, sl_search, sl_get_trip
 
 # Setup
 app = Flask(__name__)
@@ -23,16 +23,27 @@ def before_request():
         g.user = user
 
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if not hasattr(g, 'user'):
         return redirect(url_for('login'))
     return render_template('sites/home.html')
 
 
-@app.route('/test')
+@app.route('/test', methods=['GET', 'POST'])
 def test():
-    g.sl = [Trip(trip) for trip in sl_trip("Fleminggatan", "Galoppfältet", "09:00")]
+    if request.method == 'POST':
+        origin = request.form.get('origin')
+        destination = request.form.get('destination')
+        morningtime = request.form.get('morningtime')
+        startwalk = request.form.get('startwalk')
+        destwalk = request.form.get('destwalk')
+
+        origin_id, dest_id = sl_search(origin, destination)
+        t = Trip(sl_get_trip(origin_id, dest_id, '09:00')[0])
+        g.test = t.leg_info[0]['d_time']
+        g.sl = [Trip(trip) for trip in sl_get_trip(origin_id, dest_id, '09:00')]
+
     return render_template('sites/test.html')
 
 
@@ -42,7 +53,7 @@ def signup():
         username = request.form.get('username')
         password = request.form.get('password')
         re_password = request.form.get('re_password')
-        existing_usernames = db_query('name')
+        existing_usernames = [x[0] for x in db_query('Username')]
 
         if username not in existing_usernames and password == re_password:
             create_user(username, password)
@@ -67,6 +78,7 @@ def login():
         userid = checkuser(uname, pword)
         if userid:
             session['user_id'] = userid
+            print(0)
             return redirect(url_for('home'))
 
     return render_template('sites/login.html')
@@ -74,7 +86,7 @@ def login():
 
 @app.route('/')
 def index():
-    return redirect('/login')
+    return redirect('/test')
 
 
 @app.route('/logout')

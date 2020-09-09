@@ -40,7 +40,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/app/schema.sql" connection-id="802f83b2-ef97-4a0f-ab79-3fc664e21603" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/app/schema.sql" connection-id="2b3ebc3c-9fa7-45bf-acf5-fb1714264428" session-id="MAIN" current-schema="main" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

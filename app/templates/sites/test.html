@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
+<p>{{g.test}}</p>
 {% block content %}
+
   <div class="infobox">
-    <form action="/" method="post">
-      <input type="text" name="origin" placeholder="Från">
-      <input type="text" name="destination" placeholder="Till">
+    <form action=/test method="post">
+      <input type="text" name="origin" placeholder="From">
+      <input type="text" name="destination" placeholder="To">
+      <input type="text" name="morningtime" placeholder="Morningtime (min)">
+      <input type="text" name="startwalk" placeholder="Walk from station to dest (min)">
+      <input type="text" name="destwalk" placeholder="Walk from start to station (min)">
+
       <input class="button" type="submit" name="sök" value="Sök">
     </form>
 
@@ -15,9 +21,7 @@
           <p class="tid">{{i.depart_time}}</p>
           <p class="plats">{{i.depart_place}}</p>
         </div>
-        <div class="separator">
-          →
-        </div>
+        <div class="separator">→</div>
         <div class="start_slut">
           <p class="tid">{{i.arrive_time}}</p>
           <p class="plats">{{i.arrive_place}}</p>
@@ -30,9 +34,11 @@
               <p>{{j["o_name"]}}-{{j["o_time"]}}</p>
               <p>↓</p>
               <p>{{j["d_name"]}}-{{j["d_time"]}}</p>
+
             </div>
           </div>
           {% endfor %}
+
         </div>
       </div>
 
