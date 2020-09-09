@@ -11,7 +11,7 @@ body {
   grid-template-rows: auto 1fr;
 }
 
-form {
+.in_forms {
   background-color: hsl(23, 99%, 75%);
   padding: 2rem;
   border-radius: 2rem;
@@ -21,7 +21,7 @@ form {
   text-align: center;
 }
 
-form input {
+.in_forms input {
   margin: 1rem;
   height: 50%;
   padding: 0.5rem;
@@ -29,23 +29,157 @@ form input {
   font-size: calc(25px - 0.5vw);
 }
 
-form .button {
+.in_forms .button {
   margin-top: 2rem;
   background-color: #4CAF50;
   cursor: pointer;
 }
 
-form a {
+.in_forms a {
   text-decoration: none;
   color: grey;
   font-size: calc(30px - 0.5vw);
 }
 
-form a:hover {
+.in_forms a:hover {
   color: hotpink;
   text-decoration: underline;
 }
 
 img {
   margin-top: 5vh;
+}
+
+.infobox {
+  width: 50%;
+  height: 60%;
+  border-radius: 2rem;
+  background-color: hsl(23, 99%, 75%);
+  box-shadow: 1rem 1rem grey;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
+}
+
+.infobox form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  margin-top: 5%;
+}
+
+.infobox form .button {
+  background-color: #4CAF50;
+}
+
+.infobox form input {
+  border-radius: 2rem;
+  padding: 1rem;
+  width: 50%;
+}
+
+.infobox .results {
+  background-color: white;
+  height: 60%;
+  width: 86%;
+  border-radius: 2rem;
+  border: 0.1rem solid black;
+  overflow-y: scroll;
+}
+
+.infobox .result {
+  height: 35%;
+  border: 1px solid black;
+  border-radius: 2rem;
+  margin: 1% 1% 1% 1%;
+  background-color: #f8f8ff;
+  box-shadow: 0.2rem 0.2rem grey;
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+}
+
+.infobox .start_slut {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.infobox .start_slut .tid {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.infobox .separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.infobox .intervaler {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 2rem;
+}
+
+.infobox .intervaler .BUSS {
+  background-color: #0089ca;
+  color: white;
+  text-shadow: 1px 1px black;
+  display: block;
+  padding: 0.2rem;
+  transition: flex 0.5s;
+}
+
+.infobox .intervaler .LOKALTÅG {
+  background-color: #9f599a;
+  color: white;
+  text-shadow: 1px 1px black;
+  display: block;
+  padding: 0.2rem;
+  transition: flex 0.5s;
+}
+
+.infobox .intervaler .TUNNELBANA {
+  background-color: #d71d24;
+  color: white;
+  text-shadow: 1px 1px black;
+  display: block;
+  padding: 0.2rem;
+  transition: flex 0.5s;
+}
+
+.infobox .intervaler:hover .interval {
+  flex: 1;
+}
+
+.infobox .intervaler .interval:hover {
+  flex: 2;
+}
+
+.infobox .intervaler .interval_info {
+  position: absolute;
+  overflow-x: hidden;
+}
+
+.infobox .intervaler .interval_info p {
+  height: 0;
+  opacity: 0;
+  overflow-x: hidden;
+  visibility: hidden;
+  transition: visible 0s, opacity 0.5s linear;
+  text-align: center;
+  margin-top: -0.01rem;
+}
+
+.infobox .interval:hover .interval_info {
+  border: 0 1px 0 1px solid black;
+}
+
+.infobox .interval:hover .interval_info p {
+  height: auto;
+  visibility: visible;
+  opacity: 1;
 }

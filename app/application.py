@@ -9,6 +9,7 @@ Project: komitid
 from flask import abort, Flask, flash, g, render_template, redirect, request, url_for, session
 
 from app.models import checkuser, get_data, get_session_user, db_query, create_user
+from app.api_models import Trip, sl_trip
 
 # Setup
 app = Flask(__name__)
@@ -27,6 +28,12 @@ def home():
     if not hasattr(g, 'user'):
         return redirect(url_for('login'))
     return render_template('sites/home.html')
+
+
+@app.route('/test')
+def test():
+    g.sl = [Trip(trip) for trip in sl_trip("Fleminggatan", "Galoppfältet", "09:00")]
+    return render_template('sites/test.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
