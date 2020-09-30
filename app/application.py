@@ -7,9 +7,9 @@ Project: komitid
 
 # Libraries and frameworks
 from flask import abort, Flask, flash, g, render_template, redirect, request, url_for, session
-
-from app.db_models import checkuser, get_data, get_session_user, db_query, create_user
-from app.api_models import Trip, sl_search, sl_get_trip
+import pickle
+from app.db_models import checkuser, get_data, get_session_user, db_query, create_user, create_profil
+from app.api_models import Trip, sl_search, sl_get_trip, KomitidProfil, get_google_api_credentials, get_google_api_link
 
 # Setup
 app = Flask(__name__)
@@ -30,21 +30,45 @@ def home():
     return render_template('sites/home.html')
 
 
-@app.route('/test', methods=['GET', 'POST'])
-def test():
+@app.route('/sltrip', methods=['GET', 'POST'])
+def sltrip():
     if request.method == 'POST':
         origin = request.form.get('origin')
         destination = request.form.get('destination')
-        morningtime = request.form.get('morningtime')
-        startwalk = request.form.get('startwalk')
-        destwalk = request.form.get('destwalk')
 
-        origin_id, dest_id = sl_search(origin, destination)
-        t = Trip(sl_get_trip(origin_id, dest_id, '09:00')[0])
-        g.test = t.leg_info[0]['d_time']
-        g.sl = [Trip(trip) for trip in sl_get_trip(origin_id, dest_id, '09:00')]
+        g.sl = sl_get_trip(origin, destination, '09:00')
 
-    return render_template('sites/test.html')
+    return render_template('sites/sltrip.html')
+
+
+@app.route('/profil', methods=['GET', 'POST'])
+def profil():
+    if request.method == 'POST':
+        home = request.form.get('hem')
+        school = request.form.get('skola')
+        time_before_trip = request.form.get('tid')
+        code = request.form.get('token')
+
+        prof = KomitidProfil(g.user.id, get_google_api_credentials(code), home, school, time_before_trip)
+
+        pickle.dump(prof, open("test.pkl", "wb"))
+
+        with open("test.pkl", "rb") as file:
+            blob = file.read()
+            print(blob)
+
+        # create_profil(g.user.id, pickdump)
+
+        return redirect(url_for('alarm'))
+    g.link = get_google_api_link()
+
+    return render_template('sites/profil_create.html')
+
+
+@app.route('/alarm', methods=['GET', 'POST'])
+def alarm():
+    g.test = db_query('Username, KomitidProfil')
+    return render_template('sites/alarm.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -79,14 +103,14 @@ def login():
         if userid:
             session['user_id'] = userid
             print(0)
-            return redirect(url_for('home'))
+            return redirect(url_for('alarm'))
 
     return render_template('sites/login.html')
 
 
 @app.route('/')
 def index():
-    return redirect('/test')
+    return redirect('/login')
 
 
 @app.route('/logout')

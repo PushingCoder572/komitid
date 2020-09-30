@@ -1,8 +1,7 @@
 body {
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   background-color: hsl(187deg 54% 68%);
-
 }
 
 .main {
@@ -47,12 +46,22 @@ body {
   text-decoration: underline;
 }
 
+.default-link {
+  text-decoration: none;
+  color: grey;
+}
+
+.default-link:hover {
+  color: hotpink;
+  text-decoration: underline;
+}
+
 img {
   margin-top: 5vh;
 }
 
 .infobox {
-  width: 50%;
+  width: calc(800px - 2vw);
   height: 60%;
   border-radius: 2rem;
   background-color: hsl(23, 99%, 75%);
@@ -89,98 +98,134 @@ img {
   overflow-y: scroll;
 }
 
+.infobox .results::-webkit-scrollbar {
+  display: none;
+}
+
 .infobox .result {
-  height: 35%;
+  height: 10vh;
   border: 1px solid black;
   border-radius: 2rem;
   margin: 1% 1% 1% 1%;
   background-color: #f8f8ff;
   box-shadow: 0.2rem 0.2rem grey;
   display: grid;
+  grid-template-rows: 8vh 1fr;
+  overflow-y: hidden;
+  transition: height 0.5s;
+}
+
+.infobox .result:hover {
+  height: 20vh;
+}
+
+.infobox .result .overview {
+  display: grid;
   grid-template-columns: auto auto auto 1fr;
-}
-
-.infobox .start_slut {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-}
-
-.infobox .start_slut .tid {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.infobox .separator {
-  display: flex;
+  text-align: center;
+  height: 100%;
   align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
 }
 
-.infobox .intervaler {
+.infobox .result .overview h1 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.infobox .result .details {
+  height: 100%;
+  overflow-y: hidden;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-right: 2rem;
+  user-select: none;
 }
 
-.infobox .intervaler .BUSS {
-  background-color: #0089ca;
+.infobox .details::-webkit-scrollbar {
+  height: 1px;
+  transition: height 0.5s;
+}
+
+.infobox .result:hover .details::-webkit-scrollbar {
+  height: 5px;
+}
+
+.infobox .details::-webkit-scrollbar-thumb {
+  background-color: hsl(187deg 54% 68%);
+}
+
+.infobox .result .details .interval {
   color: white;
   text-shadow: 1px 1px black;
-  display: block;
-  padding: 0.2rem;
-  transition: flex 0.5s;
-}
-
-.infobox .intervaler .LOKALTÅG {
-  background-color: #9f599a;
-  color: white;
-  text-shadow: 1px 1px black;
-  display: block;
-  padding: 0.2rem;
-  transition: flex 0.5s;
-}
-
-.infobox .intervaler .TUNNELBANA {
-  background-color: #d71d24;
-  color: white;
-  text-shadow: 1px 1px black;
-  display: block;
-  padding: 0.2rem;
-  transition: flex 0.5s;
-}
-
-.infobox .intervaler:hover .interval {
-  flex: 1;
-}
-
-.infobox .intervaler .interval:hover {
-  flex: 2;
-}
-
-.infobox .intervaler .interval_info {
-  position: absolute;
-  overflow-x: hidden;
-}
-
-.infobox .intervaler .interval_info p {
-  height: 0;
-  opacity: 0;
-  overflow-x: hidden;
-  visibility: hidden;
-  transition: visible 0s, opacity 0.5s linear;
   text-align: center;
-  margin-top: -0.01rem;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.infobox .interval:hover .interval_info {
-  border: 0 1px 0 1px solid black;
+.infobox .result .details .interval h2 {
+  margin-top: 0.1vh;
+  font-size: 1.8vh;
+  margin-bottom: 1px;
 }
 
-.infobox .interval:hover .interval_info p {
-  height: auto;
-  visibility: visible;
-  opacity: 1;
+.infobox .result .details .interval p {
+  margin-top: 0;
+}
+
+.infobox .result .details .BLÅBUSS {
+  background-color: #0089ca;
+}
+
+.infobox .result .details .LOKALTÅG {
+  background-color: #9f599a;
+}
+
+.infobox .result .details .BUSS {
+  background-color: #d71d24;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 2rem;
+  background-color: hsl(23, 99%, 75%);
+  text-align: center;
+}
+
+.alarm h1 {
+  font-size: 15rem;
+  margin: 1rem;
+}
+
+.alarm h2 {
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.alarm a {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.profil form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profil form .button {
+  background-color: #4CAF50;
+}
+
+.profil span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profil input {
+  border-radius: 1rem;
+  background-color: #f8f8ff;
+  padding: 0.5rem;
 }

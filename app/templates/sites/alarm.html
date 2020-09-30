@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% for i in g.test %}
+{% if i[0] == 'tom' and i[1] == None%}
+<div class="message alarm">
+    <h2>Du har inte skapat en Komitid-profil</h2>
+    <h1>🔞</h1>
+    <a class="default-link" href="{{url_for('profil')}}">Tryck här för att skapa en profil</a>
+</div>
+{% elif i[0] == 'tom' %}
+<div class="message alarm">
+    <h2>Ditt alarm imorgon</h2>
+    <h1>08:00</h1>
+    <a class="default-link" href="#">Reseinfo</a>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

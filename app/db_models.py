@@ -39,12 +39,14 @@ def create_user(uname, pword):
     connection.commit()
     connection.close()
 
+
 def create_profil(id, bytestream):
     connection = sql.connect(path.join(ROOT, 'database.db'))
     cursor = connection.cursor()
-    cursor.execute(f'updade users set KomitidProfil = {bytestream} where Id = {id}')
+    cursor.execute('insert into users (KomitidProfil) values (?) where id = ?', (sql.Binary(bytestream), id))
     connection.commit()
     connection.close()
+
 
 def db_query(key):
     connection = sql.connect(path.join(ROOT, 'database.db'))
