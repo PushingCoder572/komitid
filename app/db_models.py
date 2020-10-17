@@ -7,6 +7,7 @@ Project: komitid
 """
 
 import sqlite3 as sql
+import pickle
 from os import path
 from flask_login import UserMixin
 
@@ -36,14 +37,6 @@ def create_user(uname, pword):
     connection = sql.connect(path.join(ROOT, 'database.db'))
     cursor = connection.cursor()
     cursor.execute('insert into users (Username, Password) values(?, ?)', (uname, pword))
-    connection.commit()
-    connection.close()
-
-
-def create_profil(id, bytestream):
-    connection = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = connection.cursor()
-    cursor.execute('insert into users (KomitidProfil) values (?) where id = ?', (sql.Binary(bytestream), id))
     connection.commit()
     connection.close()
 
@@ -88,3 +81,19 @@ def checkuser(try_uname, try_pword):
             if try_uname == user[1] and try_pword == user[2]:
                 return user[0]
     return False
+
+
+def get_profile(user_id):
+    try:
+        with open(f'tokens/{user_id}.pkl', 'rb') as file:
+            profile = pickle.load(file)
+            return profile
+    except (OSError, IOError) as e:
+        print(e)
+        return -1
+
+
+def create_profile(user_id, profile):
+    with open(f'tokens/{user_id}.pkl', 'wb') as file:
+        pickle.dump(profile, file)
+

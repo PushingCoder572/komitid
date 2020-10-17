@@ -3,6 +3,7 @@ import json
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import Flow
 from datetime import date, datetime, timedelta
+from app.db_models import get_profile
 
 
 def get_google_api_link():
@@ -47,10 +48,13 @@ def get_tomorrows_morning(credentials):
                                    timeZone='Europe/Stockholm', maxResults=2, singleEvents=True,
                                    orderBy="startTime").execute()
 
-    if result["items"][0]["summary"] != 'PFL ':
-        return datetime.strptime(result["items"][0]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
+    if result["items"]:
+        if result["items"][0]["summary"] != 'PFL ':
+            return datetime.strptime(result["items"][0]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
+        else:
+            return datetime.strptime(result["items"][1]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
     else:
-        return datetime.strptime(result["items"][1]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
+        return -1
 
 
 class KomitidProfil:
@@ -61,8 +65,24 @@ class KomitidProfil:
         self.school = school
         self.pre_trip_time = pre_trip_time
 
-    def __repr__(self):
-        return self.id, self.credentials
+    def get_alarm(self):
+        school_margin = 10
+
+        tomorrows_morning = get_tomorrows_morning(self.credentials)
+
+        if tomorrows_morning != -1:
+            morning_time = datetime.strftime(tomorrows_morning - timedelta(minutes=school_margin),
+                                             "%H:%M")
+
+            trip = sl_get_trip(self.home, self.school, morning_time)[-1]
+
+            depart_time = datetime.strptime(trip.depart_time, "%H:%M")
+
+            alarm_time = (depart_time - timedelta(minutes=int(self.pre_trip_time))).strftime("%H:%M")
+
+            return alarm_time, trip
+        else:
+            return "Ledig", -1
 
 
 class Trip:
@@ -74,6 +94,9 @@ class Trip:
         self.arrive_place = info["LegList"]["Leg"][-1]["Destination"]["name"]
         self.travel_time = self.calc_travel_time()
         self.leg_info = self.get_leg_info()
+
+    def __getitem__(self, item):
+        return item[-1]
 
     def calc_travel_time(self):
         start = datetime.strptime(self.depart_time, "%H:%M")
@@ -169,3 +192,6 @@ def sl_get_trip(origin, dest, dest_time, dest_date_offset=1):
     trips = [Trip(trip) for trip in req_json["Trip"]]
 
     return trips
+
+
+

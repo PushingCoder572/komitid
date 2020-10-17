@@ -8,7 +8,7 @@ Project: komitid
 # Libraries and frameworks
 from flask import abort, Flask, flash, g, render_template, redirect, request, url_for, session
 import pickle
-from app.db_models import checkuser, get_data, get_session_user, db_query, create_user, create_profil
+from app.db_models import checkuser, get_data, get_session_user, db_query, create_user, create_profile, get_profile
 from app.api_models import Trip, sl_search, sl_get_trip, KomitidProfil, get_google_api_credentials, get_google_api_link
 
 # Setup
@@ -51,13 +51,8 @@ def profil():
 
         prof = KomitidProfil(g.user.id, get_google_api_credentials(code), home, school, time_before_trip)
 
-        pickle.dump(prof, open("test.pkl", "wb"))
-
-        with open("test.pkl", "rb") as file:
-            blob = file.read()
-            print(blob)
-
-        # create_profil(g.user.id, pickdump)
+        if get_profile(g.user.id) == -1:
+            create_profile(g.user.id, prof)
 
         return redirect(url_for('alarm'))
     g.link = get_google_api_link()
@@ -67,7 +62,7 @@ def profil():
 
 @app.route('/alarm', methods=['GET', 'POST'])
 def alarm():
-    g.test = db_query('Username, KomitidProfil')
+    g.profile = get_profile(g.user.id)
     return render_template('sites/alarm.html')
 
 
@@ -103,7 +98,7 @@ def login():
         if userid:
             session['user_id'] = userid
             print(0)
-            return redirect(url_for('alarm'))
+            return redirect(url_for('home'))
 
     return render_template('sites/login.html')
 

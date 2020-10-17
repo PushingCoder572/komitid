@@ -102,7 +102,11 @@ img {
   display: none;
 }
 
-.infobox .result {
+.main img {
+  cursor: pointer;
+}
+
+.result {
   height: 10vh;
   border: 1px solid black;
   border-radius: 2rem;
@@ -115,11 +119,11 @@ img {
   transition: height 0.5s;
 }
 
-.infobox .result:hover {
+.result:hover {
   height: 20vh;
 }
 
-.infobox .result .overview {
+.result .overview {
   display: grid;
   grid-template-columns: auto auto auto 1fr;
   text-align: center;
@@ -127,12 +131,12 @@ img {
   align-items: center;
 }
 
-.infobox .result .overview h1 {
+.result .overview h1 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
 
-.infobox .result .details {
+.result .details {
   height: 100%;
   overflow-y: hidden;
   display: flex;
@@ -140,20 +144,20 @@ img {
   user-select: none;
 }
 
-.infobox .details::-webkit-scrollbar {
+.details::-webkit-scrollbar {
   height: 1px;
   transition: height 0.5s;
 }
 
-.infobox .result:hover .details::-webkit-scrollbar {
+.result:hover .details::-webkit-scrollbar {
   height: 5px;
 }
 
-.infobox .details::-webkit-scrollbar-thumb {
+.details::-webkit-scrollbar-thumb {
   background-color: hsl(187deg 54% 68%);
 }
 
-.infobox .result .details .interval {
+.result .details .interval {
   color: white;
   text-shadow: 1px 1px black;
   text-align: center;
@@ -161,25 +165,33 @@ img {
   padding-right: 10px;
 }
 
-.infobox .result .details .interval h2 {
+.result .details .interval h2 {
   margin-top: 0.1vh;
   font-size: 1.8vh;
   margin-bottom: 1px;
 }
 
-.infobox .result .details .interval p {
+.result .details .interval p {
   margin-top: 0;
 }
 
-.infobox .result .details .BLÅBUSS {
+.result .details .blålinje {
   background-color: #0089ca;
 }
 
-.infobox .result .details .LOKALTÅG {
+.result .details .blåbuss {
+  background-color: #0089ca;
+}
+
+.result .details .Roslagsbanan {
   background-color: #9f599a;
 }
 
-.infobox .result .details .BUSS {
+.result .details .rödalinje {
+  background-color: #d71d24;
+}
+
+.result .details .buss {
   background-color: #d71d24;
 }
 
@@ -193,17 +205,27 @@ img {
   text-align: center;
 }
 
-.alarm h1 {
+.error h1 {
   font-size: 15rem;
   margin: 1rem;
 }
 
-.alarm h2 {
+.error h2 {
   font-size: 2rem;
   margin: 1rem;
 }
 
-.alarm a {
+.your-alarm {
+  font-size: 2rem;
+  margin: 1rem;
+ }
+
+.the-alarm {
+  font-size: 15rem;
+  margin: 1rem;
+}
+
+.error a {
   font-size: 1.5rem;
   margin: 1rem;
 }
@@ -228,4 +250,32 @@ img {
   border-radius: 1rem;
   background-color: #f8f8ff;
   padding: 0.5rem;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.option {
+  flex: 1;
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option h1 {
+  font-size: 3rem;
+}
+
+.option button {
+  height: 5rem;
+  background-color: #4CAF50;
+  cursor: pointer;
+  width: 80%;
+  margin-top: 2rem;
 }

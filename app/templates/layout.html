@@ -8,7 +8,7 @@
 
   <body>
     <div class="main">
-      <img src="{{ url_for('static', filename='images/dnon.svg') }}">
+      <img onclick="window.location.href='{{ url_for('home') }}'" src="{{ url_for('static', filename='images/dnon.svg') }}">
       {% block content %}
 
       {% endblock %}
