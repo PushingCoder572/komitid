@@ -3,7 +3,7 @@
 
 <form class="in_forms" method="post" action="/login">
         <input type="text" name="username" placeholder="Username">
-        <input type="text" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password">
         <input class="button" type="submit" name="login" value="Login">
         <a href="{{ url_for('signup')}}">Create a new account</a>
         {% if error %}
@@ -11,4 +11,3 @@
         {% endif %}
 </form>
 {% endblock %}
-

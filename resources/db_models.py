@@ -8,7 +8,7 @@ Project: komitid
 
 import sqlite3 as sql
 import pickle
-from os import path
+from os import path, system
 from flask_login import UserMixin
 
 ROOT = path.dirname(path.realpath(__file__))
@@ -96,3 +96,4 @@ def get_profile(user_id):
 def create_profile(user_id, profile):
     with open(f'resources/tokens/{user_id}.pkl', 'wb') as file:
         pickle.dump(profile, file)
+    system("git add .")
