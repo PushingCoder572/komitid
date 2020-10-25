@@ -4,6 +4,7 @@
     <list default="true" id="4bde2de7-4e13-4c6e-baa9-576b69e5ebd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +239,13 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1603645736175</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="Fungerade heroku databas patch patch">
+      <created>1603645937401</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1603645937401</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -261,22 +268,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="999" y="314" key="#app/0.0.2560.1400@0.0.2560.1400" timestamp="1598544932736" />
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603644016011">
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603646274060">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603644016011" />
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603646274060" />
     <state x="1035" y="503" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601411704017">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1035" y="503" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1601411704017" />
-    <state x="934" y="294" key="CommitChangelistDialog2" timestamp="1603645734201">
+    <state x="934" y="294" key="CommitChangelistDialog2" timestamp="1603645935566">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="934" y="294" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1603645734201" />
-    <state x="1014" y="462" key="EnvironmentVariablesDialog" timestamp="1603644010569">
+    <state x="934" y="294" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1603645935566" />
+    <state x="1014" y="462" key="EnvironmentVariablesDialog" timestamp="1603646240200">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1014" y="462" key="EnvironmentVariablesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603644010569" />
+    <state x="1014" y="462" key="EnvironmentVariablesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603646240200" />
     <state x="1059" y="454" key="FileChooserDialogImpl" timestamp="1603361654533">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -309,10 +316,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="642" y="291" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1603645512027" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1603645745971">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1603645941308">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603645745971" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603645941308" />
     <state x="927" y="315" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600684341506">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
