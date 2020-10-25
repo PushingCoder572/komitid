@@ -7,23 +7,26 @@ Project: komitid
 
 # Libraries and frameworks
 from flask import Flask, g, render_template, redirect, request, url_for, session
-from resources.db_models import checkuser, get_session_user, db_query, create_user, create_profile, get_profile
 from resources.api_models import sl_get_trip, KomitidProfil, get_google_api_credentials, get_google_api_link
+from resources.db_models import db, User, get_user_by_id, username_query, create_user, check_user, get_profile, create_profile
 
 # Setup
 app = Flask(__name__, template_folder='resources/templates', static_folder='resources/static')
-app.secret_key = 'ennyckeljävelbarajagkan'
+app.config.from_envvar('APP_SETTINGS')
 
+
+db.init_app(app)
 
 @app.before_request
 def before_request():
     if 'user_id' in session:
-        user = get_session_user(session['user_id'])
+        user = get_user_by_id(session['user_id'])
         g.user = user
 
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    print(g.user, hasattr(g, 'user'))
     if not hasattr(g, 'user'):
         return redirect(url_for('login'))
     return render_template('sites/home.html')
@@ -48,10 +51,10 @@ def profil():
         time_before_trip = request.form.get('tid')
         code = request.form.get('token')
 
-        prof = KomitidProfil(g.user.id, get_google_api_credentials(code), home, school, time_before_trip)
+        prof = KomitidProfil(g.user, get_google_api_credentials(code), home, school, time_before_trip)
 
-        if get_profile(g.user.id) == -1:
-            create_profile(g.user.id, prof)
+        if get_profile(g.user) == -1:
+            create_profile(g.user, prof)
 
         return redirect(url_for('alarm'))
     g.link = get_google_api_link()
@@ -61,7 +64,7 @@ def profil():
 
 @app.route('/alarm', methods=['GET', 'POST'])
 def alarm():
-    g.profile = get_profile(g.user.id)
+    g.profile = get_profile(g.user)
     return render_template('sites/alarm.html')
 
 
@@ -71,7 +74,7 @@ def signup():
         username = request.form.get('username')
         password = request.form.get('password')
         re_password = request.form.get('re_password')
-        existing_usernames = [x[0] for x in db_query('Username')]
+        existing_usernames = [x.username for x in username_query(username)]
 
         if username not in existing_usernames and password == re_password:
             create_user(username, password)
@@ -84,19 +87,18 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    session.pop('user_id', None)
     if request.method == 'POST':
         # Removes existing user
+        session.pop('user_id', None)
 
         # Gets form data
         uname = request.form.get('username')
         pword = request.form.get('password')
 
         # Checks if user exists
-        userid = checkuser(uname, pword)
-        if userid:
-            session['user_id'] = userid
-            print(0)
+        user_is_real, id = check_user(uname, pword)
+        if user_is_real:
+            session['user_id'] = id
             return redirect(url_for('home'))
 
     return render_template('sites/login.html')

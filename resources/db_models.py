@@ -1,99 +1,38 @@
-"""
-Created on 2020-08-27
-                                          71559263e234458bbc45887f651c6e2
-Purpose: Interacts with the database
-Project: komitid
-@author: ollejernstrom
-"""
-
-import sqlite3 as sql
+from flask_sqlalchemy import SQLAlchemy
 import pickle
-from os import path, system
-from flask_login import UserMixin
 
-ROOT = path.dirname(path.realpath(__file__))
+db = SQLAlchemy()
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
+    password = db.Column(db.String)
+    profil = db.Column(db.PickleType, default=None)
 
-class User(UserMixin):
-    def __init__(self, data):
-        if data:
-            self.id = data[0]
-            self.username = data[1]
-            self.password = data[2]
+def username_query(key):
+    return User.query.filter_by(username=key).all()
 
-            self.data = data[2:]
+def get_user_by_id(id):
+    return User.query.get(id)
 
-    def __repr__(self):
-        return f'User#{self.id} {self.username}'
+def create_user(username, password):
+    user = User(username=username, password=password)
+    db.session.add(user)
+    db.session.commit()
 
+def check_user(username, password):
+    check = User.query.filter_by(username=username, password=password)
+    if check:
+        return True, check.first().id
+    else:
+        return False, -1
 
-def get_session_user(user_id):
-    userdata = get_user_by_id(user_id)
-    userobj = User(userdata)
-    return userobj
+def create_profile(user, profile):
+    user.profil = pickle.dumps(profile)
+    db.session.commit()
 
-
-def create_user(uname, pword):
-    connection = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = connection.cursor()
-    cursor.execute('insert into users (Username, Password) values(?, ?)', (uname, pword))
-    connection.commit()
-    connection.close()
-
-
-def db_query(key):
-    connection = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = connection.cursor()
-    cursor.execute(f'SELECT {key} from users')
-    data = cursor.fetchall()
-    return data
-
-
-def get_data():
-    connection = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = connection.cursor()
-    cursor.execute('select * from users')
-    data = cursor.fetchall()
-    return data
-
-
-def delete_user(uname):
-    connection = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = connection.cursor()
-    cursor.execute('delete from users where name=?', (uname,))
-    connection.commit()
-    connection.close()
-
-
-def get_user_by_id(user_id):
-    db_users = get_data()
-    if db_users:
-        for user in db_users:
-            if user_id == user[0]:
-                return user
-    return False
-
-
-def checkuser(try_uname, try_pword):
-    valid_users = get_data()
-    if valid_users:
-        for user in valid_users:
-            if try_uname == user[1] and try_pword == user[2]:
-                return user[0]
-    return False
-
-
-def get_profile(user_id):
-    try:
-        with open(f'resources/tokens/{user_id}.pkl', 'rb') as file:
-            profile = pickle.load(file)
-            return profile
-    except (OSError, IOError) as e:
-        print(e)
+def get_profile(user):
+    if user.profil == None:
         return -1
-
-
-def create_profile(user_id, profile):
-    with open(f'resources/tokens/{user_id}.pkl', 'wb') as file:
-        pickle.dump(profile, file)
-    system("git add .")
+    else:
+        return pickle.loads(user.profil)
