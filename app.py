@@ -17,6 +17,10 @@ app.config.from_envvar('APP_SETTINGS')
 
 db.init_app(app)
 
+
+with app.app_context():
+    db.create_all()
+
 @app.before_request
 def before_request():
     if 'user_id' in session:

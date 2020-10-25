@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4bde2de7-4e13-4c6e-baa9-576b69e5ebd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +250,13 @@
       <option name="presentableId" value="LOCAL−00013" />
       <updated>1603647052397</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL−00014" summary="Fungerade heroku databas patch v4">
+      <created>1603647342353</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1603647342353</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -267,7 +273,8 @@
     <MESSAGE value="Fungerade heroku databas patch" />
     <MESSAGE value="Fungerade heroku databas patch patch" />
     <MESSAGE value="Fungerade heroku databas patch patch patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fungerade heroku databas patch patch patch" />
+    <MESSAGE value="Fungerade heroku databas patch v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fungerade heroku databas patch v4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="999" y="314" key="#app" timestamp="1598544932736">
@@ -282,10 +289,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1035" y="503" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1601411704017" />
-    <state x="934" y="294" key="CommitChangelistDialog2" timestamp="1603647050568">
+    <state x="934" y="294" key="CommitChangelistDialog2" timestamp="1603647340398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="934" y="294" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1603647050568" />
+    <state x="934" y="294" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1603647340398" />
     <state x="1014" y="462" key="EnvironmentVariablesDialog" timestamp="1603646240200">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -294,22 +301,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1059" y="454" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1603361654533" />
-    <state width="2539" height="248" key="GridCell.Tab.0.bottom" timestamp="1603644126716">
+    <state width="2539" height="248" key="GridCell.Tab.0.bottom" timestamp="1603647632168">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="248" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1603644126716" />
-    <state width="2539" height="248" key="GridCell.Tab.0.center" timestamp="1603644126716">
+    <state width="2539" height="248" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1603647632168" />
+    <state width="2539" height="248" key="GridCell.Tab.0.center" timestamp="1603647632168">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="248" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1603644126716" />
-    <state width="2539" height="248" key="GridCell.Tab.0.left" timestamp="1603644126716">
+    <state width="2539" height="248" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1603647632168" />
+    <state width="2539" height="248" key="GridCell.Tab.0.left" timestamp="1603647632167">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="248" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1603644126716" />
-    <state width="2539" height="248" key="GridCell.Tab.0.right" timestamp="1603644126716">
+    <state width="2539" height="248" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1603647632167" />
+    <state width="2539" height="248" key="GridCell.Tab.0.right" timestamp="1603647632168">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="248" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1603644126716" />
+    <state width="2539" height="248" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1603647632168" />
     <state x="248" y="122" key="MergeDialog" timestamp="1598557009726">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -322,10 +329,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="642" y="291" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1603645512027" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1603647055076">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1603647361448">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603647055076" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603647361448" />
     <state x="927" y="315" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600684341506">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
