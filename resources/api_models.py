@@ -48,10 +48,11 @@ def get_tomorrows_morning(credentials):
                                    orderBy="startTime").execute()
 
     if result["items"]:
+        nice = result["items"]
         if result["items"][0]["summary"] != 'PFL ':
-            return datetime.strptime(result["items"][0]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
+            return datetime.strptime(nice[0]["start"]["dateTime"].split('+')[0], "%Y-%m-%dT%H:%M:%S")
         else:
-            return datetime.strptime(result["items"][1]["start"]["dateTime"], "%Y-%m-%dT%H:%M:%S+02:00")
+            return datetime.strptime(nice[1]["start"]["dateTime"].split('+')[0], "%Y-%m-%dT%H:%M:%S")
     else:
         return -1
 
